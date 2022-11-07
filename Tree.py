@@ -55,7 +55,7 @@ class Tree:
             else:
                 axmTemp.append(ch)
         return axmTemp
-    def output(self,axiom,thin):
+    def output(self,axiom,thin,length,update):
         stc = []
         shoot = [0,0]
         for ch in axiom:
@@ -96,6 +96,6 @@ class Tree:
                 self.turtle.pencolor('#000000')
             else:
                 if ch[2]:
-                    shoot = [shoot[0]+10,ch[1]]
-            #self.turtle.update()
+                    shoot = [shoot[0]+length,ch[1]]
+            if update: self.turtle.update()
                     

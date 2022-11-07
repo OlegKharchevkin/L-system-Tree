@@ -6,14 +6,6 @@ from Tree import Tree
 from UI import UI
 import json
 import configparser 
-# глубина массива
-def depth(l):
-    if isinstance(l, (list, tuple)):
-        t = ()
-        for itm in l:
-            t += depth(itm),
-        return 1 + max(t)
-    return 0 
 # создаем  объекты
 config = configparser.ConfigParser()
 ui = UI(turtle)
@@ -34,36 +26,31 @@ if config["Modes"]["drawing"]=="3":
 else:
     with open(config["Files"]["axiom"], "r") as f:
     	axiom = json.load(f) # загрузка стандартной аксиомы
-print(depth(axiom))
 
-itr = int(config["Modes"]["iterations"])
+itr = int(config["Modes"]["iterations"]) # количество итераций
 
 if config["Modes"]["drawing"]!="3":
 	for i in range(itr+1):
-		axiom.append(tree.L_system(axiom[i]))
+		axiom.append(tree.L_system(axiom[i])) # построение дерева
 		
 if config["Modes"]["save"]=="1":
 	with open(config["Files"]["save"],"w") as f:
-		json.dump(axiom, f)
-elif config["Modes"]["save"]=="2":
-	with open(config["Files"]["save"],"w") as f:
-		json.dump(axiom[itr+1], f)
+		json.dump(axiom[itr+1], f) # сохранение дерева
 		
 
 for i in range(itr+1):
-    ui.reset()
-    #if i >= 11: 
-    tree.output(axiom[i+1],i*1.5)
-    #f = open("lsys.txt","w")
-	#f.write(str(axiom[i+1]))
-    #f.close()
-    ui.num_of_itr(i)
-    turtle.update()
-    #image = ImageGrab.grab()
-    #image.save('scr'+str(itr)+'.png')
-    sleep(1)
-
-ui.goodbye_msg()
+    ui.reset() # очистка экрана 
+    if config["Modes"]["drawing"] == "2" or i == itr:
+        if config["Modes"]["number"] == "1":
+            ui.num_of_itr(i) 
+        if config["Modes"]["drawing"] in ["1","3"]:
+            tree.output(axiom[i+1],i*1.5,10,True) # отрисовка дерева
+        else:
+            tree.output(axiom[i+1],i*1.5,10,False) # отрисовка дерева
+        turtle.update()
+        sleep(1)
+if config["Modes"]["goodbye"] == "1":
+    ui.goodbye_msg()
 turtle.update()
 turtle.exitonclick()
 turtle.mainloop()

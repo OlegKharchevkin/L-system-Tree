@@ -11,6 +11,9 @@ class UI:
         self.turtle.penup()
         self.turtle.setpos(-600,250)
         self.turtle.write(i,font=("Arial", 20, "normal"))
+        self.turtle.setposition(0,-300)
+        self.turtle.seth(90)
+        self.turtle.pendown()
     def goodbye_msg(self):
         self.turtle.penup()   
         self.turtle.setpos(-600,250)
