@@ -12,6 +12,7 @@ ui = UI(turtle)
 tree = Tree(turtle)
 
 ui.fullscreen() # разворачиваем окно на полный экран
+#basicLeng = ui.scale()
 
 turtle.hideturtle()
 turtle.tracer(0) # настраиваем черепаху
