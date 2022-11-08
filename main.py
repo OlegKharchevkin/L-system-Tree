@@ -12,7 +12,7 @@ ui = UI(turtle)
 tree = Tree(turtle)
 
 ui.fullscreen() # разворачиваем окно на полный экран
-#basicLeng = ui.scale()
+basic_length = ui.scale()
 
 turtle.hideturtle()
 turtle.tracer(0) # настраиваем черепаху
@@ -23,7 +23,7 @@ config.read("config.ini") # читаем файл настроек
 axiom = []
 if config["Modes"]["drawing"]=="3":
     with open(config["Files"]["save"], "r") as f:
-    	axiom = json.load(f) # загрузка сохранения
+    	axiom = [json.load(f) ]# загрузка сохранения
 else:
     with open(config["Files"]["axiom"], "r") as f:
     	axiom = json.load(f) # загрузка стандартной аксиомы
@@ -42,12 +42,14 @@ if config["Modes"]["save"]=="1":
 for i in range(itr+1):
     ui.reset() # очистка экрана 
     if config["Modes"]["drawing"] == "2" or i == itr:
+        length = (i + 1)**(-1) * basic_length 
+        thin = 0.15 * length * (i + 1)
         if config["Modes"]["number"] == "1":
             ui.num_of_itr(i) 
         if config["Modes"]["drawing"] in ["1","3"]:
-            tree.output(axiom[i+1],i*1.5,10,True) # отрисовка дерева
+            tree.output(axiom[i+1],thin,length,True) # отрисовка дерева
         else:
-            tree.output(axiom[i+1],i*1.5,10,False) # отрисовка дерева
+            tree.output(axiom[i+1],thin,length,False) # отрисовка дерева
         turtle.update()
         sleep(1)
 if config["Modes"]["goodbye"] == "1":
