@@ -3,11 +3,6 @@ class Tree:
     def __init__(self,turtle):
             self.turtle = turtle
             self.thin = []
-            self.turtles = []
-            for i in range(81):
-                self.turtles.append(turtle.Turtle("turtle"))
-                self.turtles[i].speed(0)
-                self.turtles[i].hideturtle()
             for i in range(100):
                 self.thin.append(2**(-i/2))
     def L_system(self,axiom):
