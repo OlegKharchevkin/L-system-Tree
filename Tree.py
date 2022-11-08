@@ -89,7 +89,7 @@ class Tree:
                     self.turtle.pensize(thin*self.thin[shoot[1]])
                     self.turtle.forward(shoot[0])
                     shoot = [0,0]
-                self.turtle.pensize(4)
+                self.turtle.pensize(length*0.4)
                 r = ch[2]
                 if r<3:
                         self.turtle.pencolor('#009900')
@@ -97,7 +97,7 @@ class Tree:
                         self.turtle.pencolor('#667900')
                 else:
                         self.turtle.pencolor('#20BB00')
-                if ch[3] :self.turtle.forward(8)   
+                if ch[3] :self.turtle.forward(length*0.8)   
                 self.turtle.pencolor('#000000')
             else:
                 if ch[2]:
