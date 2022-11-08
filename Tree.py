@@ -3,6 +3,11 @@ class Tree:
     def __init__(self,turtle):
             self.turtle = turtle
             self.thin = []
+            self.turtles = []
+            for i in range(81):
+                self.turtles.append(turtle.Turtle("turtle"))
+                self.turtles[i].speed(0)
+                self.turtles[i].hideturtle()
             for i in range(100):
                 self.thin.append(2**(-i/2))
     def L_system(self,axiom):
@@ -98,4 +103,46 @@ class Tree:
                 if ch[2]:
                     shoot = [shoot[0]+length,ch[1]]
             if update: self.turtle.update()
-                    
+    def output_tread(self,axiom,thin,length,update):
+        stc = []
+        shoot = [0,0]
+        for ch in axiom:
+            if   ch[0] == "+":
+                self.turtle.right(ch[1])
+            elif ch[0] == "-":
+                self.turtle.left(ch[1])
+            elif ch[0] == "!":
+                self.turtle.left(ch[1])
+            elif ch[0] == "^":
+                self.turtle.left(ch[1])
+            elif ch[0] == "[":
+                if shoot[0] != 0:
+                    self.turtle.pensize(thin*self.thin[shoot[1]])
+                    self.turtle.forward(shoot[0])
+                    shoot = [0,0]
+                stc.append(self.turtle.pos())
+                stc.append(self.turtle.heading())     
+            elif ch[0] == "]":
+                self.turtle.penup()
+                self.turtle.setheading(stc.pop())
+                self.turtle.setpos(stc.pop())
+                self.turtle.pendown()
+            elif ch[0] == "0":
+                if shoot[0] != 0:
+                    self.turtle.pensize(thin*self.thin[shoot[1]])
+                    self.turtle.forward(shoot[0])
+                    shoot = [0,0]
+                self.turtle.pensize(length*0.4)
+                r = ch[2]
+                if r<3:
+                        self.turtle.pencolor('#009900')
+                elif r>6:
+                        self.turtle.pencolor('#667900')
+                else:
+                        self.turtle.pencolor('#20BB00')
+                if ch[3] :self.turtle.forward(length*0.8)   
+                self.turtle.pencolor('#000000')
+            else:
+                if ch[2]:
+                    shoot = [shoot[0]+length,ch[1]]
+            if update: self.turtle.update()
