@@ -1,4 +1,6 @@
 from random import randint
+import queue
+from threaded_turtle import ThreadSerializer, TurtleThread
 class Tree:
     def __init__(self,turtle):
             self.turtle = turtle
@@ -63,7 +65,7 @@ class Tree:
     def output(self,axiom,thin,length,update):
         stc = []
         shoot = [0,0]
-        for ch in axiom:
+        for i, ch in enumerate(axiom):
             if   ch[0] == "+":
                 self.turtle.right(ch[1])
             elif ch[0] == "-":
@@ -77,6 +79,7 @@ class Tree:
                     self.turtle.pensize(thin*self.thin[shoot[1]])
                     self.turtle.forward(shoot[0])
                     shoot = [0,0]
+                print(ch)
                 stc.append(self.turtle.pos())
                 stc.append(self.turtle.heading())     
             elif ch[0] == "]":
@@ -89,7 +92,7 @@ class Tree:
                     self.turtle.pensize(thin*self.thin[shoot[1]])
                     self.turtle.forward(shoot[0])
                     shoot = [0,0]
-                self.turtle.pensize(4)
+                self.turtle.pensize(length*0.4)
                 r = ch[2]
                 if r<3:
                         self.turtle.pencolor('#009900')
@@ -97,55 +100,13 @@ class Tree:
                         self.turtle.pencolor('#667900')
                 else:
                         self.turtle.pencolor('#20BB00')
-                if ch[3] :self.turtle.forward(8)   
+                if ch[3] :self.turtle.forward(length*0.8)   
                 self.turtle.pencolor('#000000')
             else:
                 if ch[2]:
                     shoot = [shoot[0]+length,ch[1]]
             if update: self.turtle.update()
-    def output_tread(self,axiom,thin,length,update):
-        stc = []
-        shoot = [0,0]
-        for ch in axiom:
-            if   ch[0] == "+":
-                self.turtle.right(ch[1])
-            elif ch[0] == "-":
-                self.turtle.left(ch[1])
-            elif ch[0] == "!":
-                self.turtle.left(ch[1])
-            elif ch[0] == "^":
-                self.turtle.left(ch[1])
-            elif ch[0] == "[":
-                if shoot[0] != 0:
-                    self.turtle.pensize(thin*self.thin[shoot[1]])
-                    self.turtle.forward(shoot[0])
-                    shoot = [0,0]
-                stc.append(self.turtle.pos())
-                stc.append(self.turtle.heading())     
-            elif ch[0] == "]":
-                self.turtle.penup()
-                self.turtle.setheading(stc.pop())
-                self.turtle.setpos(stc.pop())
-                self.turtle.pendown()
-            elif ch[0] == "0":
-                if shoot[0] != 0:
-                    self.turtle.pensize(thin*self.thin[shoot[1]])
-                    self.turtle.forward(shoot[0])
-                    shoot = [0,0]
-                self.turtle.pensize(4)
-                r = ch[2]
-                if r<3:
-                        self.turtle.pencolor('#009900')
-                elif r>6:
-                        self.turtle.pencolor('#667900')
-                else:
-                        self.turtle.pencolor('#20BB00')
-                if ch[3] :self.turtle.forward(8)   
-                self.turtle.pencolor('#000000')
-            else:
-                if ch[2]:
-                    shoot = [shoot[0]+length,ch[1]]
-            if update: self.turtle.update()
+    
     def output_tread(self,axiom,thin,length,update):
         stc = []
         shoot = [0,0]
