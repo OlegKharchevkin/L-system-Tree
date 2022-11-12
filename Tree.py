@@ -42,7 +42,7 @@ class Tree:
                 axmTemp.append(["2",ch[1],randint(0,10)>4])
                 axmTemp.append(["1",ch[1],ch[2]])
             elif ch[0] == '2':
-                if randint(0,100) < 12 and ch[1] > 3 :
+                if randint(0,100) < 6 and ch[1] >= 3 :
                     ug = randint(-30,30)
                     axmTemp.append(["3",ch[1],randint(0,10)>4])
                     axmTemp.append(["["])
@@ -58,7 +58,7 @@ class Tree:
     def output(self,axiom,thin,length,update):
         stc = []
         shoot = [0,0]
-        for ch in axiom:
+        for i, ch in enumerate(axiom):
             if   ch[0] == "+":
                 self.turtle.right(ch[1])
             elif ch[0] == "-":
@@ -72,6 +72,7 @@ class Tree:
                     self.turtle.pensize(thin*self.thin[shoot[1]])
                     self.turtle.forward(shoot[0])
                     shoot = [0,0]
+                #print(ch)
                 stc.append(self.turtle.pos())
                 stc.append(self.turtle.heading())     
             elif ch[0] == "]":
@@ -98,4 +99,3 @@ class Tree:
                 if ch[2]:
                     shoot = [shoot[0]+length,ch[1]]
             if update: self.turtle.update()
-                    
