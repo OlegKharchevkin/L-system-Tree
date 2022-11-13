@@ -51,13 +51,13 @@ if config["Modes"]["drawing"]!="3":
                 turtle.update()
             sleep(1)
 else:
-		ui.reset()
-		if config["Modes"]["number"] == "1":
-			ui.num_of_itr(itr)
-		length = (itr + 1)**(-1) * basic_length 
-		thin = 0.15 * basic_length 
-		#print(axiom[0])
-		tree.output(axiom[0],thin,length,True) # отрисовка дерева
+    ui.reset()
+    if config["Modes"]["number"] == "1":
+        ui.num_of_itr(itr)
+    length = (basic_length*3)/(-(i**3)*0.0033+(i**2)*0.2505+i*1.8659+3.3891)
+    thin = 0.15*basic_length 
+    #print(axiom[0])
+    tree.output(axiom[0],thin,length,True) # отрисовка дерева
 		
 if config["Modes"]["save"]=="1"and config["Modes"]["drawing"]!="3":
 	with open(config["Files"]["save"],"w") as f:
