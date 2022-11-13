@@ -39,17 +39,17 @@ if config["Modes"]["drawing"]!="3":
         axiom.append(tree.L_system(axiom[i])) # построение дерева
     for i in range(itr+1):
         ui.reset() # очистка экрана 
-    if config["Modes"]["drawing"] == "2" or i == itr:
-        length = (i + 1)**(-1) * basic_length 
-        thin = 0.15 * basic_length 
-        if config["Modes"]["number"] == "1":
-            ui.num_of_itr(i) 
-        if config["Modes"]["drawing"] in ["1","3"]:
-            tree.output(axiom[i+1],thin,length,True) # отрисовка дерева
-        else:
-            tree.output(axiom[i+1],thin,length,False) # отрисовка дерева
-            turtle.update()
-        sleep(1)
+        if config["Modes"]["drawing"] == "2" or i == itr:
+            length = (i + 1)**(-1) * basic_length 
+            thin = 0.15 * basic_length 
+            if config["Modes"]["number"] == "1":
+                ui.num_of_itr(i) 
+            if config["Modes"]["drawing"] in ["1","3"]:
+                tree.output(axiom[i+1],thin,length,True) # отрисовка дерева
+            else:
+                tree.output(axiom[i+1],thin,length,False) # отрисовка дерева
+                turtle.update()
+            sleep(1)
 else:
 		ui.reset()
 		if config["Modes"]["number"] == "1":
