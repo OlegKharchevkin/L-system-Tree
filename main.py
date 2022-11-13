@@ -40,8 +40,8 @@ if config["Modes"]["drawing"]!="3":
     for i in range(itr+1):
         ui.reset() # очистка экрана 
         if config["Modes"]["drawing"] == "2" or i == itr:
-            length = (i + 1)**(-1) * basic_length 
-            thin = 0.15 * basic_length 
+            length = (basic_length*3)/(-(i**3)*0.0033+(i**2)*0.2505+i*1.8659+3.3891)
+            thin = 0.15*basic_length 
             if config["Modes"]["number"] == "1":
                 ui.num_of_itr(i) 
             if config["Modes"]["drawing"] in ["1","3"]:
@@ -74,4 +74,3 @@ if config["Modes"]["goodbye"] == "1":
 turtle.update()
 turtle.exitonclick()
 turtle.mainloop()
-

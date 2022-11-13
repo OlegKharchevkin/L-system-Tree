@@ -81,7 +81,7 @@ class Tree:
                     shoot = [0,0]
                 #print(ch)
                 stc.append(self.turtle.pos())
-                stc.append(self.turtle.heading())     
+                stc.append(self.turtle.heading())    
             elif ch[0] == "]":
                 self.turtle.penup()
                 self.turtle.setheading(stc.pop())
@@ -100,13 +100,13 @@ class Tree:
                         self.turtle.pencolor('#667900')
                 else:
                         self.turtle.pencolor('#20BB00')
-                if ch[3] :self.turtle.forward(length*0.8)   
+                if ch[3] :self.turtle.forward(length*0.8)
                 self.turtle.pencolor('#000000')
             else:
                 if ch[2]:
                     shoot = [shoot[0]+length,ch[1]]
             if update: self.turtle.update()
-    
+            
     def output_tread(self,axiom,thin,length,update):
         stc = []
         shoot = [0,0]
